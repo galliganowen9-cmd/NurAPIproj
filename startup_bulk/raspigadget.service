@@ -1,0 +1,12 @@
+# /usr/lib/systemd/system/raspigadget.service
+[Unit]
+Description=Configure USB flashing port for device mode
+
+[Service]
+Type=simple
+RemainAfterExit=yes
+ExecStart=/opt/startup_bulk/raspi-usb-device-start.sh
+ExecStop=/opt/startup_bulk/raspi-usb-device-stop.sh
+
+[Install]
+WantedBy=multi-user.target
