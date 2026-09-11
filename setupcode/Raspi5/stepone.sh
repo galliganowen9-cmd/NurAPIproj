@@ -1,4 +1,5 @@
 #!/bin/bash
+sudo ln -s /usr/lib/arm-linux-gnueabihf/libopus.a /usr/local/lib/libopus.a
 echo "Making some edits load dwc2"
 filename=/boot/firmware/cmdline.txt
 text='modules-load=dwc2'
