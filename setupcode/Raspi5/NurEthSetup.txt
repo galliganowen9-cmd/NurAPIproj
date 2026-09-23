@@ -1,0 +1,7 @@
+[Unit]
+Description=Sets up eth0 so that RFID reader related to the NURAPI program can be sent commands, if the IP for the RFID reader changes, the IP in the setupscript must also change
+[Service]
+Type=Simple
+RemainAfterExit=yes
+ExecStart=/opt/startup_eth/ethsetup.sh
+[Install]WantedBy=multi-user.target
