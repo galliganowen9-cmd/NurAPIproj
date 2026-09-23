@@ -26,7 +26,7 @@ cmd1 = ["sudo", "/home/samalab/git/Payload-SDK/build/bin/dji_sdk_demo_linux_cxx"
 cmd2 = ["sudo", "pkill", "-f",  "dji_sdk_demo_linux_cxx"]
 while True:
     stateone = GPIO.input(2)
-    if (stateone == 0):
+    if (stateone == 0): #flip to brk to continue
         break
 s = socket.socket()
 print("Socket created")
@@ -53,7 +53,7 @@ while True:
     s.sendall(packetsend)
     time.sleep(21.4)
     state= GPIO.input(2)
-    if (state == 0):
+    if (state == 0): #flip to brk to continue
         subprocess.run(cmd2)
         break
 print("Scanning end,DJI end")
