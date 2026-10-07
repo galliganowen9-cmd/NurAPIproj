@@ -58,7 +58,9 @@ fi
 }
 
 echo "Part 1 creates the usbgadget folder, and populates it with identifiers or descriptors"
+sudo modprobe libcomposite
 cd /sys/kernel/config/usb_gadget/
+
 mkdir -p pi
 
 cd pi
@@ -89,7 +91,11 @@ check_file "$G2/serialnumber" || exit 1
 check_file "$G2/manufacturer" || exit 1
 check_file "$G2/product" || exit 1
 
-
+#Came across an issue with libcomposite and usb_gadget folder not existing
+#This is an error from the kernel not being able to see libcomposite
+#Changed stepthree file variable from
+#file=etc/modules to file=/etc/modules-load.d/libcomposite.conf
+#I than ran sudo modprobe libcomposite, this seemed to fix the issue
 
 cfg=configs/c.1
 mkdir -p "${cfg}"
@@ -148,8 +154,8 @@ if [ ${enable_bulk} -eq 1 ]; then
 
  	mount -o mode=0777 -t functionfs bulk1 /dev/usb-ffs/bulk1
     	mount -o mode=0777 -t functionfs bulk2 /dev/usb-ffs/bulk2
-	sudo /home/samalab/startup-bulk /dev/usb-ffs/bulk1 &
-	sudo /home/samalab/startup-bulk /dev/usb-ffs/bulk2 &
+	sudo /home/samalab/startup-bulk /dev/usb-ffs/bulk1 & #Must fix this
+	sudo /home/samalab/startup-bulk /dev/usb-ffs/bulk2 & #Must also fix this
     	sleep 3
 
     	mkdir -p "${cfg}/strings/0x409"

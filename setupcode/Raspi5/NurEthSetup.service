@@ -4,4 +4,5 @@ Description=Sets up eth0 so that RFID reader related to the NURAPI program can b
 Type=Simple
 RemainAfterExit=yes
 ExecStart=/opt/startup_eth/ethsetup.sh
-[Install]WantedBy=multi-user.target
+[Install]
+WantedBy=multi-user.target
